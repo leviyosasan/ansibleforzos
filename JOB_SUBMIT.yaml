@@ -1,0 +1,7 @@
+---
+- name: Submit a JCL without mvscmdauth
+  hosts: zos_host
+  gather_facts: no
+  tasks:
+    - name: Submit JCL using shell
+      raw: "submit '//DATASET(MEMBER)'"
