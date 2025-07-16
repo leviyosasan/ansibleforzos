@@ -1,34 +1,62 @@
-Ansible For z/OS
+# Ansible for z/OS
 
-Ansible for zOS Installation
-To install Ansible for z/OS, you first need an Ubuntu server
- ➢ Download: https://ubuntu.com/download/server
+Bu doküman, Ansible kullanarak z/OS sistemlerine nasıl bağlanılacağını ve bir JCL işini nasıl çalıştıracağınızı adım adım anlatır.
 
-After completing the Ubuntu installation, proceed with the Ansible installation.
- ➢ sudo su
- ➢ apt update
- ➢ apt install ansible -y
- ➢ ansible-galaxy collection install ibm.ibm_zos_core
+---
 
-Since Ansible relies on SSH connections, it is necessary to install sshpass.
- ➢ apt update
- ➢ apt install sshpass -y
+## 1. Gereksinimler
 
-To establish a connection to z/OS, it is necessary to create an inventory.yaml file.
-➢ nano inventory.yaml
+- Ubuntu Server
+- Ansible
+- sshpass
+- IBM z/OS erişimi (SSH ile)
+
+---
+
+## 2. Ubuntu Server Kurulumu
+
+Ubuntu Server'ı aşağıdaki bağlantıdan indirip kurun:
+
+🔗 [Ubuntu Server İndir](https://ubuntu.com/download/server)
+
+---
+
+## 3. Ansible Kurulumu
+
+Ubuntu kurulumunu tamamladıktan sonra, Ansible kurulumuna geçin:
+
+
+sudo su
+apt update
+apt install ansible -y
+ansible-galaxy collection install ibm.ibm_zos_core
+
+4. sshpass Kurulumu
+Ansible, z/OS'e bağlanmak için SSH kullanır. Bu nedenle sshpass aracını kurmanız gerekir:
+
+apt update
+apt install sshpass -y
+
+5. Envanter (inventory) Dosyası Oluşturma
+Bağlantı yapılandırması için bir inventory.yaml dosyası oluşturun:
+nano inventory.yaml
+
+Aşağıdaki içeriği ekleyin:
+```bash
 all:
   hosts:
     zos_host:
       ansible_host: host_address
-      ansible_user: tso_ıser
+      ansible_user: tso_user
       ansible_ssh_pass: "tso_user_password"
       ansible_python_interpreter: "/python_path"
       cmd_dir: "/python_path/bin"
-      
-Let's now write a playbook to execute a JOB on z/OS. Below is an example of how you can structure 
-the playbook:
+ ```````
 
-➢ nano playbook.yaml
+6. Ansible Playbook Oluşturma
+Bir JCL işini çalıştırmak için bir playbook.yaml dosyası oluşturun:
+nano playbook.yaml
+```bash
 ---
 - name: Submit a JCL without mvscmdauth
   hosts: zos_host
@@ -36,5 +64,10 @@ the playbook:
   tasks:
     - name: Submit JCL using shell
       raw: "submit '//DATASET(MEMBER)'"
-We can run the playbook with the following command:
-➢ ansible-playbook -i inventory.yaml playbook.yaml
+ ```````
+7. Playbook’u Çalıştırma
+Hazırladığınız playbook'u çalıştırmak için aşağıdaki komutu kullanın:
+```bash
+ansible-playbook -i inventory.yaml playbook.yaml
+ ```````
+
