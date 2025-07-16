@@ -25,18 +25,19 @@ Ubuntu Server'ı aşağıdaki bağlantıdan indirip kurun:
 
 Ubuntu kurulumunu tamamladıktan sonra, Ansible kurulumuna geçin:
 
-
+```bash
 sudo su
 apt update
 apt install ansible -y
 ansible-galaxy collection install ibm.ibm_zos_core
+ ```````
 
 4. sshpass Kurulumu
 Ansible, z/OS'e bağlanmak için SSH kullanır. Bu nedenle sshpass aracını kurmanız gerekir:
-
+```bash
 apt update
 apt install sshpass -y
-
+ ```````
 5. Envanter (inventory) Dosyası Oluşturma
 Bağlantı yapılandırması için bir inventory.yaml dosyası oluşturun:
 nano inventory.yaml
