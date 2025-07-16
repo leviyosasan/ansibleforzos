@@ -40,8 +40,9 @@ apt install sshpass -y
  ```````
 5. Envanter (inventory) Dosyası Oluşturma
 Bağlantı yapılandırması için bir inventory.yaml dosyası oluşturun:
+```bash
 nano inventory.yaml
-
+ ```````
 Aşağıdaki içeriği ekleyin:
 ```bash
 all:
@@ -56,7 +57,10 @@ all:
 
 6. Ansible Playbook Oluşturma
 Bir JCL işini çalıştırmak için bir playbook.yaml dosyası oluşturun:
+```bash
 nano playbook.yaml
+ ```````
+Aşağıdaki içeriği ekleyin:
 ```bash
 ---
 - name: Submit a JCL without mvscmdauth
