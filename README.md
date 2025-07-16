@@ -6,6 +6,7 @@ Bu doküman, Ansible kullanarak z/OS sistemlerine nasıl bağlanılacağını ve
 
 ## 1. Gereksinimler
 
+- IBM Open Enterprise for Python
 - Ubuntu Server
 - Ansible
 - sshpass
