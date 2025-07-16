@@ -25,7 +25,8 @@ all:
       ansible_python_interpreter: "/python_path"
       cmd_dir: "/python_path/bin"
       
-Let's now write a playbook to execute a JOB on z/OS. Below is an example of how you can structure the playbook:
+Let's now write a playbook to execute a JOB on z/OS. Below is an example of how you can structure 
+the playbook:
 ➢ nano playbook.yaml
 ---
 - name: Submit a JCL without mvscmdauth
