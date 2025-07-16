@@ -29,6 +29,7 @@ Let's now write a playbook to execute a JOB on z/OS. Below is an example of how 
 the playbook:
 
 ➢ nano playbook.yaml
+
 ---
 - name: Submit a JCL without mvscmdauth
   hosts: zos_host
