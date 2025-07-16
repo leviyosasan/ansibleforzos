@@ -32,13 +32,13 @@ apt install ansible -y
 ansible-galaxy collection install ibm.ibm_zos_core
  ```````
 
-4. sshpass Kurulumu
+## 4. sshpass Kurulumu
 Ansible, z/OS'e bağlanmak için SSH kullanır. Bu nedenle sshpass aracını kurmanız gerekir:
 ```bash
 apt update
 apt install sshpass -y
  ```````
-5. Envanter (inventory) Dosyası Oluşturma
+## 5. Envanter (inventory) Dosyası Oluşturma
 Bağlantı yapılandırması için bir inventory.yaml dosyası oluşturun:
 ```bash
 nano inventory.yaml
@@ -55,7 +55,7 @@ all:
       cmd_dir: "/python_path/bin"
  ```````
 
-6. Ansible Playbook Oluşturma
+## 6. Ansible Playbook Oluşturma
 Bir JCL işini çalıştırmak için bir playbook.yaml dosyası oluşturun:
 ```bash
 nano playbook.yaml
@@ -70,7 +70,7 @@ Aşağıdaki içeriği ekleyin:
     - name: Submit JCL using shell
       raw: "submit '//DATASET(MEMBER)'"
  ```````
-7. Playbook’u Çalıştırma
+## 7. Playbook’u Çalıştırma
 Hazırladığınız playbook'u çalıştırmak için aşağıdaki komutu kullanın:
 ```bash
 ansible-playbook -i inventory.yaml playbook.yaml
