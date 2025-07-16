@@ -1,0 +1,8 @@
+all:
+  hosts:
+    zos_host:
+      ansible_host: host_address
+      ansible_user: tso_user
+      ansible_ssh_pass: "tso_user_password"
+      ansible_python_interpreter: "/python_path"
+      cmd_dir: "/python_path/bin"
